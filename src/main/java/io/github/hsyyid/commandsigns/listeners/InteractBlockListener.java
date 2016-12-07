@@ -116,13 +116,15 @@ public class InteractBlockListener
 
 						for (String command : commands)
 						{
-							if (command.contains("@p"))
+							if (command.contains("@c")) //add anywhere to command @c for run command as console
 							{
-								command = command.replaceAll("@p", player.getName());
+								command = command.replaceAll("@c", "");
+								if(command.contains("@p")) command = command.replaceAll("@p", player.getName());
 								Sponge.getCommandManager().process(Sponge.getServer().getConsole(), command);
 							}
 							else
 							{
+								if(command.contains("@p")) command = command.replaceAll("@p", player.getName());
 								Sponge.getCommandManager().process(player, command);
 							}
 						}
